@@ -11,10 +11,12 @@ import React, { useState } from "react";
 
 import Link from "next/link";
 import GlobalFooter from "@/components/GlobalFooter";
-import menus from "../../../config/menu";
-import {listQuestionBankVoByPageUsingPost} from "@/api/questionBankController";
-import {useSelector} from "react-redux";
-import {RootState} from "@/stores";
+import { menus } from "../../../config/menus";
+import { listQuestionBankVoByPageUsingPost } from "@/api/questionBankController";
+import { useSelector } from "react-redux";
+import { RootState } from "@/stores";
+import MdEditor from "@/components/MdEditor";
+import MdViewer from "@/components/MdViewer";
 
 /**
  * 搜索条
@@ -69,6 +71,8 @@ export default function BasicLayout({ children }: Props) {
   const loginUser = useSelector((state: RootState) => state.loginUser);
 
   const [pathname, setPathname] = useState("/list/sub-page/sub-sub-page1");
+
+  const [text, setText] = useState<string>('');
 
   return (
     <div
@@ -177,7 +181,10 @@ export default function BasicLayout({ children }: Props) {
               minHeight: 800,
             }}
           >
-            { JSON.stringify(loginUser) }
+
+            <MdEditor value={text} onChange={setText} />
+            <MdViewer value={text} />
+            {JSON.stringify(loginUser)}
             <div />
           </ProCard>
         </PageContainer>
