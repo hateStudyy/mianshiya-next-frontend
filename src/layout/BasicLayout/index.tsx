@@ -1,3 +1,4 @@
+"use client";
 import {
   GithubFilled,
   LogoutOutlined,
@@ -11,7 +12,14 @@ import React, { useState } from "react";
 import Link from "next/link";
 import GlobalFooter from "@/components/GlobalFooter";
 import menus from "../../../config/menu";
+import {listQuestionBankVoByPageUsingPost} from "@/api/questionBankController";
+import {useSelector} from "react-redux";
+import {RootState} from "@/stores";
 
+/**
+ * 搜索条
+ * @constructor
+ */
 const SearchInput = () => {
   return (
     <div
@@ -44,12 +52,21 @@ interface Props {
   children: React.ReactNode;
 }
 
+/**
+ * 全局通用布局
+ * @param children
+ * @constructor
+ */
 export default function BasicLayout({ children }: Props) {
   const settings: ProSettings | undefined = {
     fixSiderbar: true,
     layout: "top",
     splitMenus: true,
   };
+  listQuestionBankVoByPageUsingPost({}).then((res) => {
+    console.log(res);
+  });
+  const loginUser = useSelector((state: RootState) => state.loginUser);
 
   const [pathname, setPathname] = useState("/list/sub-page/sub-sub-page1");
 
@@ -98,9 +115,9 @@ export default function BasicLayout({ children }: Props) {
           type: "group",
         }}
         avatarProps={{
-          src: "/assets/logo.png",
+          src: loginUser.userAvatar || "/assets/logo.png",
           size: "small",
-          title: "鱼皮鸭",
+          title: loginUser.userName || "鱼皮鸭",
           render: (props, dom) => {
             return (
               <Dropdown
@@ -160,6 +177,7 @@ export default function BasicLayout({ children }: Props) {
               minHeight: 800,
             }}
           >
+            { JSON.stringify(loginUser) }
             <div />
           </ProCard>
         </PageContainer>
