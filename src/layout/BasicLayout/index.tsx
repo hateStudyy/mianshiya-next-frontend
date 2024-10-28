@@ -1,19 +1,15 @@
 "use client";
-import {
-  GithubFilled,
-  LogoutOutlined,
-  SearchOutlined,
-} from "@ant-design/icons";
-import { PageContainer, ProCard, ProLayout } from "@ant-design/pro-components";
-import { Dropdown, Input } from "antd";
-import React, { useState } from "react";
+import {GithubFilled, LogoutOutlined, SearchOutlined,} from "@ant-design/icons";
+import {PageContainer, ProCard, ProLayout} from "@ant-design/pro-components";
+import {Dropdown, Input} from "antd";
+import React, {useState} from "react";
 import "./index.css";
 
 import GlobalFooter from "@/components/GlobalFooter";
-import { menus } from "../../../config/menus";
-import { listQuestionBankVoByPageUsingPost } from "@/api/questionBankController";
-import { useSelector } from "react-redux";
-import { RootState } from "@/stores";
+import {menus} from "../../../config/menus";
+import {listQuestionBankVoByPageUsingPost} from "@/api/questionBankController";
+import {useSelector} from "react-redux";
+import {RootState} from "@/stores";
 import MdEditor from "@/components/MdEditor";
 import MdViewer from "@/components/MdViewer";
 import Image from "next/image";
@@ -62,7 +58,6 @@ interface Props {
  * @constructor
  */
 export default function BasicLayout({ children }: Props) {
-
   listQuestionBankVoByPageUsingPost({}).then((res) => {
     console.log(res);
   });
