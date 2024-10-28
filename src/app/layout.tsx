@@ -28,7 +28,7 @@ const InitLayout: React.FC<
     if (res.data) {
       dispatch(setLoginUser(res.data));
     }
-      // else {
+    // else {
     //   // todo 测试代码，实际可删除
     //   setTimeout(() => {
     //     const testUser = { userName: "测试登录", id: 1 };

@@ -23,7 +23,7 @@ const AccessLayout: React.FC<
     const menu = findAllMenuItemByPath(pathname) || {};
     const needAccess = menu?.access ?? AccessEnum.NOT_LOGIN;
     const canAccess = checkAccess(loginUser, needAccess);
-    alert("canAccess" + canAccess);
+    // alert("canAccess" + canAccess);
     if (!canAccess) {
         return <Forbidden />;
     }

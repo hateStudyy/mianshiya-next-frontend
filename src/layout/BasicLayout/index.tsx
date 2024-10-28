@@ -4,12 +4,11 @@ import {
   LogoutOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
-import type { ProSettings } from "@ant-design/pro-components";
 import { PageContainer, ProCard, ProLayout } from "@ant-design/pro-components";
-import { Dropdown, Image, Input } from "antd";
+import { Dropdown, Input } from "antd";
 import React, { useState } from "react";
+import "./index.css";
 
-import Link from "next/link";
 import GlobalFooter from "@/components/GlobalFooter";
 import { menus } from "../../../config/menus";
 import { listQuestionBankVoByPageUsingPost } from "@/api/questionBankController";
@@ -17,6 +16,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/stores";
 import MdEditor from "@/components/MdEditor";
 import MdViewer from "@/components/MdViewer";
+import Image from "next/image";
+import Link from "next/link";
+import {usePathname} from "next/navigation";
 
 /**
  * 搜索条
@@ -60,23 +62,19 @@ interface Props {
  * @constructor
  */
 export default function BasicLayout({ children }: Props) {
-  const settings: ProSettings | undefined = {
-    fixSiderbar: true,
-    layout: "top",
-    splitMenus: true,
-  };
+
   listQuestionBankVoByPageUsingPost({}).then((res) => {
     console.log(res);
   });
   const loginUser = useSelector((state: RootState) => state.loginUser);
 
-  const [pathname, setPathname] = useState("/list/sub-page/sub-sub-page1");
+  const pathname = usePathname();
 
-  const [text, setText] = useState<string>('');
+  const [text, setText] = useState<string>("");
 
   return (
     <div
-      id="test-pro-layout"
+      id="basicLayout"
       style={{
         height: "100vh",
       }}
@@ -172,8 +170,8 @@ export default function BasicLayout({ children }: Props) {
             </a>
           );
         }}
-        {...settings}
       >
+        {children}
         <PageContainer>
           <ProCard
             style={{
@@ -181,7 +179,6 @@ export default function BasicLayout({ children }: Props) {
               minHeight: 800,
             }}
           >
-
             <MdEditor value={text} onChange={setText} />
             <MdViewer value={text} />
             {JSON.stringify(loginUser)}
