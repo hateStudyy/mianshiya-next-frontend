@@ -1,12 +1,12 @@
 "use client";
-import {AntdRegistry} from "@ant-design/nextjs-registry";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 import "./globals.css";
 import BasicLayout from "@/layout/BasicLayout";
-import {useCallback, useEffect} from "react";
-import {Provider, useDispatch} from "react-redux";
-import store, {AppDispatch} from "@/stores";
-import {getLoginUserUsingGet} from "@/api/userController";
-import {setLoginUser} from "@/stores/loginUser";
+import { useCallback, useEffect } from "react";
+import { Provider, useDispatch } from "react-redux";
+import store, { AppDispatch } from "@/stores";
+import { getLoginUserUsingGet } from "@/api/userController";
+import { setLoginUser } from "@/stores/loginUser";
 import AccessLayout from "@/access/AccessLayout";
 
 /**
@@ -43,6 +43,11 @@ const InitLayout: React.FC<
 
   return <>{children}</>;
 };
+/**
+ * 项目根布局
+ * @param children
+ * @constructor
+ */
 export default function RootLayout({
   children,
 }: Readonly<{

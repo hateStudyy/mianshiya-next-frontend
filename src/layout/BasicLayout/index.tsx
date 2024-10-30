@@ -1,20 +1,27 @@
 "use client";
-import {GithubFilled, LogoutOutlined, SearchOutlined,} from "@ant-design/icons";
-import {PageContainer, ProCard, ProLayout} from "@ant-design/pro-components";
-import {Dropdown, Input} from "antd";
-import React, {useState} from "react";
+import {
+  GithubFilled,
+  LogoutOutlined,
+  SearchOutlined,
+} from "@ant-design/icons";
+import { PageContainer, ProCard, ProLayout } from "@ant-design/pro-components";
+import { Dropdown, Input, message } from "antd";
+import React, { useState } from "react";
 import "./index.css";
 
 import GlobalFooter from "@/components/GlobalFooter";
-import {menus} from "../../../config/menus";
-import {listQuestionBankVoByPageUsingPost} from "@/api/questionBankController";
-import {useSelector} from "react-redux";
-import {RootState} from "@/stores";
+import { menus } from "../../../config/menus";
+import { listQuestionBankVoByPageUsingPost } from "@/api/questionBankController";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/stores";
 import MdEditor from "@/components/MdEditor";
 import MdViewer from "@/components/MdViewer";
 import Image from "next/image";
 import Link from "next/link";
-import {usePathname} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
+import { userLogoutUsingPost } from "@/api/userController";
+import { setLoginUser } from "@/stores/loginUser";
+import DEFAULT_USER from "@/constants/user";
 
 /**
  * 搜索条
@@ -66,6 +73,24 @@ export default function BasicLayout({ children }: Props) {
   const pathname = usePathname();
 
   const [text, setText] = useState<string>("");
+
+  const dispatch = useDispatch<AppDispatch>();
+  const router = useRouter();
+
+  /**
+   * 用户注销
+   */
+  const userLogout = async () => {
+    try {
+      await userLogoutUsingPost();
+      message.success("已退出登录");
+      dispatch(setLoginUser(DEFAULT_USER));
+      router.push("/user/login");
+    } catch (e) {
+      message.error("操作失败，" + e.message);
+    }
+    return;
+  };
 
   return (
     <div
@@ -126,6 +151,13 @@ export default function BasicLayout({ children }: Props) {
                       label: "退出登录",
                     },
                   ],
+                  onClick: async (event: { key: React.Key }) => {
+                    const { key } = event;
+                    // 退出登录
+                    if (key === "logout") {
+                      userLogout();
+                    }
+                  },
                 }}
               >
                 {dom}
