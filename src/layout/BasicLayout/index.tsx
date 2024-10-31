@@ -18,10 +18,11 @@ import MdEditor from "@/components/MdEditor";
 import MdViewer from "@/components/MdViewer";
 import Image from "next/image";
 import Link from "next/link";
-import {usePathname, useRouter} from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { userLogoutUsingPost } from "@/api/userController";
 import { setLoginUser } from "@/stores/loginUser";
 import DEFAULT_USER from "@/constants/user";
+import getAccessibleMenus from "@/access/menuAccess";
 
 /**
  * 搜索条
@@ -65,9 +66,6 @@ interface Props {
  * @constructor
  */
 export default function BasicLayout({ children }: Props) {
-  listQuestionBankVoByPageUsingPost({}).then((res) => {
-    console.log(res);
-  });
   const loginUser = useSelector((state: RootState) => state.loginUser);
 
   const pathname = usePathname();
@@ -86,7 +84,7 @@ export default function BasicLayout({ children }: Props) {
       message.success("已退出登录");
       dispatch(setLoginUser(DEFAULT_USER));
       router.push("/user/login");
-    } catch (e) {
+    } catch (e: any) {
       message.error("操作失败，" + e.message);
     }
     return;
@@ -141,6 +139,13 @@ export default function BasicLayout({ children }: Props) {
           size: "small",
           title: loginUser.userName || "鱼皮鸭",
           render: (props, dom) => {
+            if(!loginUser.id) {
+              return <div onClick={() => {
+                router.push("/user/login");
+              }}>
+                {dom}
+              </div>
+            }
             return (
               <Dropdown
                 menu={{
@@ -181,7 +186,7 @@ export default function BasicLayout({ children }: Props) {
         }}
         // 菜单项数据
         menuDataRender={() => {
-          return menus;
+          return getAccessibleMenus(loginUser, menus);
         }}
         menuItemRender={(item, dom) => (
           <Link href={item.path || "/"} target={item.target}>
@@ -199,19 +204,19 @@ export default function BasicLayout({ children }: Props) {
         }}
       >
         {children}
-        <PageContainer>
-          <ProCard
-            style={{
-              height: "100vh",
-              minHeight: 800,
-            }}
-          >
-            <MdEditor value={text} onChange={setText} />
-            <MdViewer value={text} />
-            {JSON.stringify(loginUser)}
-            <div />
-          </ProCard>
-        </PageContainer>
+        {/*<PageContainer>*/}
+        {/*  <ProCard*/}
+        {/*    style={{*/}
+        {/*      height: "100vh",*/}
+        {/*      minHeight: 800,*/}
+        {/*    }}*/}
+        {/*  >*/}
+        {/*    <MdEditor value={text} onChange={setText} />*/}
+        {/*    <MdViewer value={text} />*/}
+        {/*    {JSON.stringify(loginUser)}*/}
+        {/*    <div />*/}
+        {/*  </ProCard>*/}
+        {/*</PageContainer>*/}
       </ProLayout>
     </div>
   );

@@ -8,6 +8,8 @@ import store, { AppDispatch } from "@/stores";
 import { getLoginUserUsingGet } from "@/api/userController";
 import { setLoginUser } from "@/stores/loginUser";
 import AccessLayout from "@/access/AccessLayout";
+import BaseResponseLoginUserVO_ = API.BaseResponseLoginUserVO_;
+import {AxiosResponse} from "axios";
 
 /**
  * 初始化布局（多封装一层，使得能调用 useDispatch）
@@ -24,14 +26,14 @@ const InitLayout: React.FC<
   // 初始化全局用户状态
   const doInitLoginUser = useCallback(async () => {
     // 获取用户信息
-    const res = await getLoginUserUsingGet();
+    const res: AxiosResponse = await getLoginUserUsingGet();
     if (res.data) {
       dispatch(setLoginUser(res.data));
     }
     // else {
     //   // todo 测试代码，实际可删除
     //   setTimeout(() => {
-    //     const testUser = { userName: "测试登录", id: 1 };
+    //     const testUser = { userName: "测试登录", id: 1, userAvatar: "https://www.code-nav.cn/logo.png" };
     //     dispatch(setLoginUser(testUser));
     //   }, 3000);
     // }

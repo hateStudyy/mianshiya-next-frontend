@@ -6,7 +6,7 @@ import { listQuestionBankVoByPageUsingPost } from "@/api/questionBankController"
 export default function HomePage() {
   return (
     <main id="homePage">
-      <div>程序员鱼皮x编程导航的项目教程</div>
+      <div>题库页面</div>
     </main>
   );
 }

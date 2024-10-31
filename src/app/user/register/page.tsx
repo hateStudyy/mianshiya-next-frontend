@@ -30,7 +30,7 @@ const UserRegisterPage: React.FC = (props) => {
                 // 前往登录页
                 router.push("/user/login");
             }
-        } catch (e) {
+        } catch (e: any) {
             message.error("注册失败，" + e.message);
         }
     };
