@@ -1,21 +1,14 @@
 "use client";
-import {
-  GithubFilled,
-  LogoutOutlined,
-  SearchOutlined,
-} from "@ant-design/icons";
-import { PageContainer, ProCard, ProLayout } from "@ant-design/pro-components";
-import { Dropdown, Input, message } from "antd";
+import { GithubFilled, LogoutOutlined } from "@ant-design/icons";
+import { ProLayout } from "@ant-design/pro-components";
+import { Dropdown, message } from "antd";
 import React, { useState } from "react";
 import "./index.css";
 
 import GlobalFooter from "@/components/GlobalFooter";
 import { menus } from "../../../config/menus";
-import { listQuestionBankVoByPageUsingPost } from "@/api/questionBankController";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/stores";
-import MdEditor from "@/components/MdEditor";
-import MdViewer from "@/components/MdViewer";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -23,38 +16,7 @@ import { userLogoutUsingPost } from "@/api/userController";
 import { setLoginUser } from "@/stores/loginUser";
 import DEFAULT_USER from "@/constants/user";
 import getAccessibleMenus from "@/access/menuAccess";
-
-/**
- * 搜索条
- * @constructor
- */
-const SearchInput = () => {
-  return (
-    <div
-      key="SearchOutlined"
-      aria-hidden
-      style={{
-        display: "flex",
-        alignItems: "center",
-        marginInlineEnd: 24,
-      }}
-      onMouseDown={(e) => {
-        e.stopPropagation();
-        e.preventDefault();
-      }}
-    >
-      <Input
-        style={{
-          borderRadius: 4,
-          marginInlineEnd: 12,
-        }}
-        prefix={<SearchOutlined />}
-        placeholder="搜索题目"
-        variant="borderless"
-      />
-    </div>
-  );
-};
+import SearchInput from "@/layout/BasicLayout/components/SearchInput";
 
 interface Props {
   children: React.ReactNode;
@@ -139,12 +101,16 @@ export default function BasicLayout({ children }: Props) {
           size: "small",
           title: loginUser.userName || "鱼皮鸭",
           render: (props, dom) => {
-            if(!loginUser.id) {
-              return <div onClick={() => {
-                router.push("/user/login");
-              }}>
-                {dom}
-              </div>
+            if (!loginUser.id) {
+              return (
+                <div
+                  onClick={() => {
+                    router.push("/user/login");
+                  }}
+                >
+                  {dom}
+                </div>
+              );
             }
             return (
               <Dropdown

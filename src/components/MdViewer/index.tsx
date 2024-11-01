@@ -3,7 +3,7 @@ import gfm from "@bytemd/plugin-gfm";
 import highlight from "@bytemd/plugin-highlight";
 import "bytemd/dist/index.css";
 import "highlight.js/styles/vs.css";
-import "./index.css";
+import "../QuestionBankList/index.css";
 
 interface Props {
   value?: string;
