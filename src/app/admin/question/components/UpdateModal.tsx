@@ -1,13 +1,13 @@
-import { updateUserUsingPost } from '@/api/userController';
+import { updateQuestionUsingPost } from '@/api/questionController';
 import { ProColumns, ProTable } from '@ant-design/pro-components';
 import { message, Modal } from 'antd';
 import React from 'react';
 
 interface Props {
-    oldData?: API.User;
+    oldData?: API.Question;
     visible: boolean;
-    columns: ProColumns<API.User>[];
-    onSubmit: (values: API.UserAddRequest) => void;
+    columns: ProColumns<API.Question>[];
+    onSubmit: (values: API.QuestionUpdateRequest) => void;
     onCancel: () => void;
 }
 
@@ -16,10 +16,10 @@ interface Props {
  *
  * @param fields
  */
-const handleUpdate = async (fields: API.UserUpdateRequest) => {
+const handleUpdate = async (fields: API.QuestionUpdateRequest) => {
     const hide = message.loading('正在更新');
     try {
-        await updateUserUsingPost(fields);
+        await updateQuestionUsingPost(fields);
         hide();
         message.success('更新成功');
         return true;
@@ -58,7 +58,7 @@ const UpdateModal: React.FC<Props> = (props) => {
                 form={{
                     initialValues: oldData,
                 }}
-                onSubmit={async (values: API.UserAddRequest) => {
+                onSubmit={async (values: API.QuestionUpdateRequest) => {
                     const success = await handleUpdate({
                         ...values,
                         id: oldData?.id as any,
