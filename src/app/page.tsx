@@ -41,7 +41,7 @@ export default async function HomePage() {
     <main id="homePage" className="max-width-content">
       <Flex justify="space-between" align="center">
         <Title level={3}>最新题库</Title>
-        <Link href={"/banks"}>查看更多</Link>
+        <Link href={"/bank"}>查看更多</Link>
       </Flex>
       <Title level={3}>最新题库</Title>
       <QuestionBankList questionBankList={questionBankList} />
