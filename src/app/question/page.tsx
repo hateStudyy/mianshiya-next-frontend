@@ -7,7 +7,7 @@ import QuestionTable from "../../components/QuestionTable";
  * 题目列表页面
  * @constructor
  */
-export default async function QuestionsPage({ searchParams }: any) {
+export default async function QuestionPage({ searchParams }: any) {
   let questionList = [];
   let total = 0;
   const { q: searchText } = searchParams;

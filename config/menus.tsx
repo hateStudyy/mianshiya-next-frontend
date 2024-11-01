@@ -13,7 +13,7 @@ export const menus = [
     name: "题库",
   },
   {
-    path: "/questions",
+    path: "/question",
     name: "题目",
   },
   {
