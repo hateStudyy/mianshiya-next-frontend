@@ -1,7 +1,6 @@
 "use client";
 
-import CreateModal from "./components/CreateModal";
-import UpdateModal from "./components/UpdateModal";
+
 import {
   deleteQuestionUsingPost,
   listQuestionByPageUsingPost,
@@ -13,6 +12,8 @@ import { Button, message, Space, Typography } from "antd";
 import React, { useRef, useState } from "react";
 import MdEditor from "@/components/MdEditor";
 import Index from "@/components/TagList";
+import CreateModal from "@/app/admin/question/components/CreateModal";
+import UpdateModal from "@/app/admin/question/components/UpdateModal";
 
 /**
  * 题目管理页面

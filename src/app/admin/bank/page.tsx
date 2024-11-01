@@ -9,13 +9,14 @@ import type { ActionType, ProColumns } from "@ant-design/pro-components";
 import { PageContainer, ProTable } from "@ant-design/pro-components";
 import { Button, message, Space, Typography } from "antd";
 import React, { useRef, useState } from "react";
-import CreateModal from "@/app/admin/user/components/CreateModal";
-import UpdateModal from "@/app/admin/user/components/UpdateModal";
+
 import { AxiosResponse } from "axios";
 import {
   deleteQuestionBankUsingPost,
   listQuestionBankByPageUsingPost,
 } from "@/api/questionBankController";
+import CreateModal from "@/app/admin/bank/components/CreateModal";
+import UpdateModal from "@/app/admin/bank/components/UpdateModal";
 
 /**
  * 用户管理页面
