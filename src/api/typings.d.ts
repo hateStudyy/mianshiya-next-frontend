@@ -485,6 +485,7 @@ declare namespace API {
   };
 
   type QuestionVO = {
+    answer?: string;
     content?: string;
     createTime?: string;
     id?: number;
@@ -519,6 +520,7 @@ declare namespace API {
     userAccount?: string;
     userAvatar?: string;
     userName?: string;
+    userProfile?: string;
     userRole?: string;
   };
 
