@@ -5,7 +5,7 @@ import request from "@/libs/request";
 /** addQuestionBankQuestion POST /api/questionBankQuestion/add */
 export async function addQuestionBankQuestionUsingPost(
   body: API.QuestionBankQuestionAddRequest,
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
   return request<API.BaseResponseLong_>("/api/questionBankQuestion/add", {
     method: "POST",
@@ -20,7 +20,7 @@ export async function addQuestionBankQuestionUsingPost(
 /** deleteQuestionBankQuestion POST /api/questionBankQuestion/delete */
 export async function deleteQuestionBankQuestionUsingPost(
   body: API.QuestionBankQuestionRemoveRequest,
-  options?: { [key: string]: any },
+  options?: { [key: string]: any }
 ) {
   return request<API.BaseResponseBoolean_>("/api/questionBankQuestion/delete", {
     method: "POST",

@@ -128,16 +128,16 @@ declare namespace API {
   };
 
   type getQuestionBankVOByIdUsingGETParams = {
-    content?: string;
     current?: number;
+    description?: string;
     id?: number;
     needQueryQuestionList?: boolean;
     notId?: number;
     pageSize?: number;
+    picture?: string;
     searchText?: string;
     sortField?: string;
     sortOrder?: string;
-    tags?: string[];
     title?: string;
     userId?: number;
   };
@@ -371,6 +371,7 @@ declare namespace API {
   };
 
   type QuestionAddRequest = {
+    answer?: string;
     content?: string;
     tags?: string[];
     title?: string;
@@ -395,29 +396,29 @@ declare namespace API {
   };
 
   type QuestionBankAddRequest = {
-    content?: string;
-    tags?: string[];
+    description?: string;
+    picture?: string;
     title?: string;
   };
 
   type QuestionBankEditRequest = {
-    content?: string;
+    description?: string;
     id?: number;
-    tags?: string[];
+    picture?: string;
     title?: string;
   };
 
   type QuestionBankQueryRequest = {
-    content?: string;
     current?: number;
+    description?: string;
     id?: number;
     needQueryQuestionList?: boolean;
     notId?: number;
     pageSize?: number;
+    picture?: string;
     searchText?: string;
     sortField?: string;
     sortOrder?: string;
-    tags?: string[];
     title?: string;
     userId?: number;
   };
@@ -433,9 +434,9 @@ declare namespace API {
   };
 
   type QuestionBankUpdateRequest = {
-    content?: string;
+    description?: string;
     id?: number;
-    tags?: string[];
+    picture?: string;
     title?: string;
   };
 
@@ -452,6 +453,7 @@ declare namespace API {
   };
 
   type QuestionEditRequest = {
+    answer?: string;
     content?: string;
     id?: number;
     tags?: string[];
@@ -459,6 +461,7 @@ declare namespace API {
   };
 
   type QuestionQueryRequest = {
+    answer?: string;
     content?: string;
     current?: number;
     id?: number;
@@ -474,6 +477,7 @@ declare namespace API {
   };
 
   type QuestionUpdateRequest = {
+    answer?: string;
     content?: string;
     id?: number;
     tags?: string[];
