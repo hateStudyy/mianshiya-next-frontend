@@ -9,9 +9,9 @@ import QuestionBankList from "@/components/QuestionBankList";
 // 主页
 export default async function BanksPage() {
   let questionBankList = [];
-    const pageSize = 200;
+  const pageSize = 200;
 
-    try {
+  try {
     const questionBankRes: AxiosResponse =
       await listQuestionBankVoByPageUsingPost({
         pageSize,

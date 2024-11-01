@@ -8,8 +8,7 @@ import store, { AppDispatch } from "@/stores";
 import { getLoginUserUsingGet } from "@/api/userController";
 import { setLoginUser } from "@/stores/loginUser";
 import AccessLayout from "@/access/AccessLayout";
-import BaseResponseLoginUserVO_ = API.BaseResponseLoginUserVO_;
-import {AxiosResponse} from "axios";
+import { AxiosResponse } from "axios";
 
 /**
  * 初始化布局（多封装一层，使得能调用 useDispatch）

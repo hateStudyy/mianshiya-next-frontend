@@ -12,8 +12,6 @@ import { AppDispatch } from "@/stores";
 import { setLoginUser } from "@/stores/loginUser";
 import { useDispatch } from "react-redux";
 import "./index.css";
-import axios from "axios";
-import LoginUserVO = API.LoginUserVO;
 
 /**
  * 用户登录页面
@@ -34,7 +32,7 @@ const UserLoginPage: React.FC = (props) => {
       if (res.data) {
         message.success("登录成功！");
         // 保存用户登录态
-        console.log("res:  "+ res);
+        console.log("res:  " + res);
         dispatch(setLoginUser(res.data));
         router.replace("/");
         form.resetFields();

@@ -13,7 +13,10 @@ export default function GlobalFooter() {
     <div className="global-footer">
       <div>© {currentYear} 面试刷题平台</div>
       <div>
-        <a href="https://github.com/hateStudyy/mianshiya-next-frontend" target="_blank">
+        <a
+          href="https://github.com/hateStudyy/mianshiya-next-frontend"
+          target="_blank"
+        >
           GitHub链接
         </a>
       </div>

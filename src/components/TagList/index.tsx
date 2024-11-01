@@ -1,8 +1,8 @@
 import { Tag } from "antd";
-import "./index.css"
+import "./index.css";
 
 interface Props {
-    tagList?: string[];
+  tagList?: string[];
 }
 
 /**
@@ -11,15 +11,15 @@ interface Props {
  * @constructor
  */
 const Index = (props: Props) => {
-    const { tagList = [] } = props;
+  const { tagList = [] } = props;
 
-    return (
-        <div className="tag-list">
-            {tagList.map((tag) => {
-                return <Tag key={tag}>{tag}</Tag>;
-            })}
-        </div>
-    );
+  return (
+    <div className="tag-list">
+      {tagList.map((tag) => {
+        return <Tag key={tag}>{tag}</Tag>;
+      })}
+    </div>
+  );
 };
 
 export default Index;

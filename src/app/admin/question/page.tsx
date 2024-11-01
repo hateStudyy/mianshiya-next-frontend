@@ -1,6 +1,5 @@
 "use client";
 
-
 import {
   deleteQuestionUsingPost,
   listQuestionByPageUsingPost,
@@ -74,16 +73,16 @@ const QuestionAdminPage: React.FC = () => {
       hideInSearch: true,
       width: 240,
       renderFormItem: (
-          _,
-          { type, defaultRender, formItemProps, fieldProps, ...rest }: any,
-          form,
+        _,
+        { type, defaultRender, formItemProps, fieldProps, ...rest }: any,
+        form,
       ) => {
         return (
-            // value 和 onchange 会通过 form 自动注入。
-            <MdEditor
-                // 组件的配置
-                {...fieldProps}
-            />
+          // value 和 onchange 会通过 form 自动注入。
+          <MdEditor
+            // 组件的配置
+            {...fieldProps}
+          />
         );
       },
     },
@@ -94,16 +93,16 @@ const QuestionAdminPage: React.FC = () => {
       hideInSearch: true,
       width: 640,
       renderFormItem: (
-          _,
-          { type, defaultRender, formItemProps, fieldProps, ...rest }: any,
-          form,
+        _,
+        { type, defaultRender, formItemProps, fieldProps, ...rest }: any,
+        form,
       ) => {
         return (
-            // value 和 onchange 会通过 form 自动注入。
-            <MdEditor
-                // 组件的配置
-                {...fieldProps}
-            />
+          // value 和 onchange 会通过 form 自动注入。
+          <MdEditor
+            // 组件的配置
+            {...fieldProps}
+          />
         );
       },
     },
@@ -155,83 +154,83 @@ const QuestionAdminPage: React.FC = () => {
       dataIndex: "option",
       valueType: "option",
       render: (_, record) => (
-          <Space size="middle">
-            <Typography.Link
-                onClick={() => {
-                  setCurrentRow(record);
-                  setUpdateModalVisible(true);
-                }}
-            >
-              修改
-            </Typography.Link>
-            <Typography.Link type="danger" onClick={() => handleDelete(record)}>
-              删除
-            </Typography.Link>
-          </Space>
+        <Space size="middle">
+          <Typography.Link
+            onClick={() => {
+              setCurrentRow(record);
+              setUpdateModalVisible(true);
+            }}
+          >
+            修改
+          </Typography.Link>
+          <Typography.Link type="danger" onClick={() => handleDelete(record)}>
+            删除
+          </Typography.Link>
+        </Space>
       ),
     },
   ];
 
   return (
-      <PageContainer>
-        <ProTable<API.Question>
-            headerTitle={"题目管理"}
-            actionRef={actionRef}
-            toolBarRender={() => [
-              <Button
-                  type="primary"
-                  key="primary"
-                  onClick={() => {
-                    setCreateModalVisible(true);
-                  }}
-              >
-                <PlusOutlined /> 新建
-              </Button>,
-            ]}
-            request={async (params, sort, filter) => {
-              const sortField = Object.keys(sort)?.[0];
-              const sortOrder = sort?.[sortField];
+    <PageContainer>
+      <ProTable<API.Question>
+        headerTitle={"题目管理"}
+        actionRef={actionRef}
+        toolBarRender={() => [
+          <Button
+            type="primary"
+            key="primary"
+            onClick={() => {
+              setCreateModalVisible(true);
+            }}
+          >
+            <PlusOutlined /> 新建
+          </Button>,
+        ]}
+        request={async (params, sort, filter) => {
+          const sortField = Object.keys(sort)?.[0];
+          const sortOrder = sort?.[sortField];
 
-              const { data, code }: any = await listQuestionByPageUsingPost({
-                ...params,
-                sortField,
-                sortOrder,
-                ...filter,
-              } as API.QuestionQueryRequest);
+          const { data, code }: any = await listQuestionByPageUsingPost({
+            ...params,
+            sortField,
+            sortOrder,
+            ...filter,
+          } as API.QuestionQueryRequest);
 
-              return {
-                success: code === 0,
-                data: data.records || [],
-                total: Number(data.total) || 0,
-              };
-            }}
-            columns={columns}
-        />
-        <CreateModal
-            visible={createModalVisible}
-            columns={columns}
-            onSubmit={() => {
-              setCreateModalVisible(false);
-              actionRef.current?.reload();
-            }}
-            onCancel={() => {
-              setCreateModalVisible(false);
-            }}
-        />
-        <UpdateModal
-            visible={updateModalVisible}
-            columns={columns}
-            oldData={currentRow}
-            onSubmit={() => {
-              setUpdateModalVisible(false);
-              setCurrentRow(undefined);
-              actionRef.current?.reload();
-            }}
-            onCancel={() => {
-              setUpdateModalVisible(false);
-            }}
-        />
-      </PageContainer>
+          return {
+            success: code === 0,
+            data: data.records || [],
+            total: Number(data.total) || 0,
+          };
+        }}
+        columns={columns}
+      />
+      <CreateModal
+        visible={createModalVisible}
+        columns={columns}
+        onSubmit={() => {
+          setCreateModalVisible(false);
+          actionRef.current?.reload();
+        }}
+        onCancel={() => {
+          setCreateModalVisible(false);
+        }}
+      />
+      <UpdateModal
+        visible={updateModalVisible}
+        columns={columns}
+        oldData={currentRow}
+        onSubmit={() => {
+          setUpdateModalVisible(false);
+          setCurrentRow(undefined);
+          actionRef.current?.reload();
+        }}
+        onCancel={() => {
+          setUpdateModalVisible(false);
+        }}
+      />
+    </PageContainer>
   );
 };
 export default QuestionAdminPage;

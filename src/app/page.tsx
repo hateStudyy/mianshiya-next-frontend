@@ -6,9 +6,7 @@ import { Divider, Flex } from "antd";
 import Link from "next/link";
 import { listQuestionBankVoByPageUsingPost } from "@/api/questionBankController";
 import { listQuestionVoByPageUsingPost } from "@/api/questionController";
-import QuestionBank = API.QuestionBank;
 import { AxiosResponse } from "axios";
-import { ExceptionStatusType } from "antd/es/result";
 import QuestionBankList from "@/components/QuestionBankList";
 import QuestionList from "@/components/QuestionList";
 

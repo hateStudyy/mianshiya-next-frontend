@@ -1,5 +1,5 @@
 import checkAccess from "@/access/checkAccess";
-import {menus} from "../../config/menus";
+import { menus } from "../../config/menus";
 
 /**
  * 获取有权限、可访问的菜单

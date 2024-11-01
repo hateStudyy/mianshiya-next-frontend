@@ -1,14 +1,14 @@
-import { updateUserUsingPost } from '@/api/userController';
-import { ProColumns, ProTable } from '@ant-design/pro-components';
-import { message, Modal } from 'antd';
-import React from 'react';
+import { updateUserUsingPost } from "@/api/userController";
+import { ProColumns, ProTable } from "@ant-design/pro-components";
+import { message, Modal } from "antd";
+import React from "react";
 
 interface Props {
-    oldData?: API.User;
-    visible: boolean;
-    columns: ProColumns<API.User>[];
-    onSubmit: (values: API.UserAddRequest) => void;
-    onCancel: () => void;
+  oldData?: API.User;
+  visible: boolean;
+  columns: ProColumns<API.User>[];
+  onSubmit: (values: API.UserAddRequest) => void;
+  onCancel: () => void;
 }
 
 /**
@@ -17,17 +17,17 @@ interface Props {
  * @param fields
  */
 const handleUpdate = async (fields: API.UserUpdateRequest) => {
-    const hide = message.loading('正在更新');
-    try {
-        await updateUserUsingPost(fields);
-        hide();
-        message.success('更新成功');
-        return true;
-    } catch (error: any) {
-        hide();
-        message.error('更新失败，' + error.message);
-        return false;
-    }
+  const hide = message.loading("正在更新");
+  try {
+    await updateUserUsingPost(fields);
+    hide();
+    message.success("更新成功");
+    return true;
+  } catch (error: any) {
+    hide();
+    message.error("更新失败，" + error.message);
+    return false;
+  }
 };
 
 /**
@@ -36,39 +36,39 @@ const handleUpdate = async (fields: API.UserUpdateRequest) => {
  * @constructor
  */
 const UpdateModal: React.FC<Props> = (props) => {
-    const { oldData, visible, columns, onSubmit, onCancel } = props;
+  const { oldData, visible, columns, onSubmit, onCancel } = props;
 
-    if (!oldData) {
-        return <></>;
-    }
+  if (!oldData) {
+    return <></>;
+  }
 
-    return (
-        <Modal
-            destroyOnClose
-            title={'更新'}
-            open={visible}
-            footer={null}
-            onCancel={() => {
-                onCancel?.();
-            }}
-        >
-            <ProTable
-                type="form"
-                columns={columns}
-                form={{
-                    initialValues: oldData,
-                }}
-                onSubmit={async (values: API.UserUpdateRequest) => {
-                    const success = await handleUpdate({
-                        ...values,
-                        id: oldData?.id as any,
-                    } as any);
-                    if (success) {
-                        onSubmit?.(values);
-                    }
-                }}
-            />
-        </Modal>
-    );
+  return (
+    <Modal
+      destroyOnClose
+      title={"更新"}
+      open={visible}
+      footer={null}
+      onCancel={() => {
+        onCancel?.();
+      }}
+    >
+      <ProTable
+        type="form"
+        columns={columns}
+        form={{
+          initialValues: oldData,
+        }}
+        onSubmit={async (values: API.UserUpdateRequest) => {
+          const success = await handleUpdate({
+            ...values,
+            id: oldData?.id as any,
+          } as any);
+          if (success) {
+            onSubmit?.(values);
+          }
+        }}
+      />
+    </Modal>
+  );
 };
 export default UpdateModal;

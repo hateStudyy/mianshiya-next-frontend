@@ -1,16 +1,10 @@
 "use client";
 
-import {
-  deleteUserUsingPost,
-  listUserByPageUsingPost,
-} from "@/api/userController";
 import { PlusOutlined } from "@ant-design/icons";
 import type { ActionType, ProColumns } from "@ant-design/pro-components";
 import { PageContainer, ProTable } from "@ant-design/pro-components";
 import { Button, message, Space, Typography } from "antd";
 import React, { useRef, useState } from "react";
-
-import { AxiosResponse } from "axios";
 import {
   deleteQuestionBankUsingPost,
   listQuestionBankByPageUsingPost,
