@@ -47,6 +47,18 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponsePageQuestionBankQuestion_ = {
+    code?: number;
+    data?: PageQuestionBankQuestion_;
+    message?: string;
+  };
+
+  type BaseResponsePageQuestionBankQuestionVO_ = {
+    code?: number;
+    data?: PageQuestionBankQuestionVO_;
+    message?: string;
+  };
+
   type BaseResponsePageQuestionBankVO_ = {
     code?: number;
     data?: PageQuestionBankVO_;
@@ -74,6 +86,12 @@ declare namespace API {
   type BaseResponsePostVO_ = {
     code?: number;
     data?: PostVO;
+    message?: string;
+  };
+
+  type BaseResponseQuestionBankQuestionVO_ = {
+    code?: number;
+    data?: QuestionBankQuestionVO;
     message?: string;
   };
 
@@ -123,6 +141,11 @@ declare namespace API {
   };
 
   type getPostVOByIdUsingGETParams = {
+    /** id */
+    id?: number;
+  };
+
+  type getQuestionBankQuestionVOByIdUsingGETParams = {
     /** id */
     id?: number;
   };
@@ -219,6 +242,32 @@ declare namespace API {
     orders?: OrderItem[];
     pages?: number;
     records?: QuestionBank[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PageQuestionBankQuestion_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: QuestionBankQuestion[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PageQuestionBankQuestionVO_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: QuestionBankQuestionVO[];
     searchCount?: boolean;
     size?: number;
     total?: number;
@@ -423,14 +472,52 @@ declare namespace API {
     userId?: number;
   };
 
+  type QuestionBankQuestion = {
+    createTime?: string;
+    id?: number;
+    questionBankId?: number;
+    questionId?: number;
+    updateTime?: string;
+    userId?: number;
+  };
+
   type QuestionBankQuestionAddRequest = {
     questionBankId?: number;
     questionId?: number;
   };
 
+  type QuestionBankQuestionQueryRequest = {
+    current?: number;
+    id?: number;
+    notId?: number;
+    pageSize?: number;
+    questionBankId?: number;
+    questionId?: number;
+    sortField?: string;
+    sortOrder?: string;
+    userId?: number;
+  };
+
   type QuestionBankQuestionRemoveRequest = {
     questionBankId?: number;
     questionId?: number;
+  };
+
+  type QuestionBankQuestionUpdateRequest = {
+    id?: number;
+    questionBankId?: number;
+    questionId?: number;
+  };
+
+  type QuestionBankQuestionVO = {
+    createTime?: string;
+    id?: number;
+    questionBankId?: number;
+    questionId?: number;
+    tagList?: string[];
+    updateTime?: string;
+    user?: UserVO;
+    userId?: number;
   };
 
   type QuestionBankUpdateRequest = {
