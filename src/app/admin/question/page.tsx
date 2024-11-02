@@ -7,12 +7,13 @@ import {
 import { PlusOutlined } from "@ant-design/icons";
 import type { ActionType, ProColumns } from "@ant-design/pro-components";
 import { PageContainer, ProTable } from "@ant-design/pro-components";
-import { Button, message, Space, Typography } from "antd";
+import {Button, Form, message, Select, Space, Typography} from "antd";
 import React, { useRef, useState } from "react";
 import MdEditor from "@/components/MdEditor";
 import Index from "@/components/TagList";
 import CreateModal from "@/app/admin/question/components/CreateModal";
 import UpdateModal from "@/app/admin/question/components/UpdateModal";
+import UpdateBankModal from "@/app/admin/question/components/UpdateBankModal";
 
 /**
  * 题目管理页面
@@ -27,6 +28,9 @@ const QuestionAdminPage: React.FC = () => {
   const actionRef = useRef<ActionType>();
   // 当前点击的数据
   const [currentRow, setCurrentRow] = useState<API.Question>();
+  // 是否显示更新所属题库的弹窗
+  const [updateBankModalVisible, setUpdateBankModalVisible] = useState<boolean>(false);
+
 
   /**
    * 删除节点
@@ -59,6 +63,12 @@ const QuestionAdminPage: React.FC = () => {
       title: "id",
       dataIndex: "id",
       valueType: "text",
+      hideInForm: true,
+    },
+    {
+      title: "所属题库",
+      dataIndex: "questionBankId",
+      hideInTable: true,
       hideInForm: true,
     },
     {
@@ -163,6 +173,14 @@ const QuestionAdminPage: React.FC = () => {
           >
             修改
           </Typography.Link>
+          <Typography.Link
+              onClick={() => {
+                setCurrentRow(record);
+                setUpdateBankModalVisible(true);
+              }}
+          >
+            修改所属题库
+          </Typography.Link>
           <Typography.Link type="danger" onClick={() => handleDelete(record)}>
             删除
           </Typography.Link>
@@ -230,6 +248,15 @@ const QuestionAdminPage: React.FC = () => {
           setUpdateModalVisible(false);
         }}
       />
+      <UpdateBankModal
+          visible={updateBankModalVisible}
+          questionId={currentRow?.id}
+          onCancel={() => {
+            setCurrentRow(undefined);
+            setUpdateBankModalVisible(false);
+          }}
+      />
+
     </PageContainer>
   );
 };

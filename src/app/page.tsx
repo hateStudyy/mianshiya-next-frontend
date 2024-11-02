@@ -43,7 +43,6 @@ export default async function HomePage() {
         <Title level={3}>最新题库</Title>
         <Link href={"/bank"}>查看更多</Link>
       </Flex>
-      <Title level={3}>最新题库</Title>
       <QuestionBankList questionBankList={questionBankList} />
       <Divider />
       <Title level={3}>最新题目</Title>
