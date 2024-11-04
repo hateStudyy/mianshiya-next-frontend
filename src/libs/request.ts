@@ -3,7 +3,8 @@ import axios from "axios";
 // 创建 Axios 示例
 const myAxios = axios.create({
   baseURL: "http://localhost:8101",
-  timeout: 10000,
+    // todo 注意不要把 ip 提交到服务器
+    timeout: 10000,
   withCredentials: true,
 });
 
