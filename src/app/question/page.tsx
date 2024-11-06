@@ -1,5 +1,5 @@
 import Title from "antd/es/typography/Title";
-import { listQuestionVoByPageUsingPost } from "@/api/questionController";
+import {listQuestionVoByPageUsingPost, searchQuestionVoByPageUsingPost} from "@/api/questionController";
 import "./index.css";
 import QuestionTable from "../../components/QuestionTable";
 
@@ -13,7 +13,8 @@ export default async function QuestionPage({ searchParams }: any) {
   const { q: searchText } = searchParams;
 
   try {
-    const questionRes: any = await listQuestionVoByPageUsingPost({
+    const questionRes: any = await searchQuestionVoByPageUsingPost({
+      searchText,
       pageSize: 12,
       sortField: "createTime",
       sortOrder: "descend",
@@ -23,7 +24,6 @@ export default async function QuestionPage({ searchParams }: any) {
   } catch (e: any) {
     console.error("获取题目列表失败，" + e.message);
   }
-
   return (
     <div id="questionsPage" className="max-width-content">
       <Title level={3}>题目大全</Title>
