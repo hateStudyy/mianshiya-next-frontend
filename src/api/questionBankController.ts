@@ -17,12 +17,42 @@ export async function addQuestionBankUsingPost(
   });
 }
 
+/** batchAddQuestionsToBank POST /api/questionBank/add/batch */
+export async function batchAddQuestionsToBankUsingPost(
+  body: API.QuestionBankQuestionBatchAddRequest,
+  options?: { [key: string]: any }
+) {
+  return request<API.BaseResponseBoolean_>("/api/questionBank/add/batch", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
 /** deleteQuestionBank POST /api/questionBank/delete */
 export async function deleteQuestionBankUsingPost(
   body: API.DeleteRequest,
   options?: { [key: string]: any }
 ) {
   return request<API.BaseResponseBoolean_>("/api/questionBank/delete", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** batchDeleteQuestions POST /api/questionBank/delete/batch */
+export async function batchDeleteQuestionsUsingPost(
+  body: API.QuestionBatchDeleteRequest,
+  options?: { [key: string]: any }
+) {
+  return request<API.BaseResponseBoolean_>("/api/questionBank/delete/batch", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -114,6 +144,21 @@ export async function listMyQuestionBankVoByPageUsingPost(
       ...(options || {}),
     }
   );
+}
+
+/** batchRemoveQuestionsFromBank POST /api/questionBank/remove/batch */
+export async function batchRemoveQuestionsFromBankUsingPost(
+  body: API.QuestionBankQuestionBatchRemoveRequest,
+  options?: { [key: string]: any }
+) {
+  return request<API.BaseResponseBoolean_>("/api/questionBank/remove/batch", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: body,
+    ...(options || {}),
+  });
 }
 
 /** updateQuestionBank POST /api/questionBank/update */
